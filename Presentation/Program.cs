@@ -1,10 +1,12 @@
-using DataAccessLayer.Context;
+using DataAccessLayer.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.LoadDataAccessLayerExtension(builder.Configuration);
+builder.Services.LoadServiceLayerExtension(builder.Configuration); 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 

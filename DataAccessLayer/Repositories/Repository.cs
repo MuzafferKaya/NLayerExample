@@ -1,17 +1,15 @@
-﻿using DataAccessLayer.Abstracts;
-using DataAccessLayer.Context;
+﻿using DataAccessLayer.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly AppDbContext _appDbContext = new AppDbContext();
+        private readonly AppDbContext _appDbContext;
+        public Repository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
 
         public async Task AddAsync(T entity)
         {
