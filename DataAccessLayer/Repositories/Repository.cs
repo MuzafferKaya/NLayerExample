@@ -11,11 +11,7 @@ namespace DataAccessLayer.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly AppDbContext _appDbContext;
-        public Repository(AppDbContext appDbContext)
-        {
-            _appDbContext = appDbContext;
-        }
+        private readonly AppDbContext _appDbContext = new AppDbContext();
 
         public async Task AddAsync(T entity)
         {
