@@ -6,6 +6,5 @@ namespace ServiceLayer.Services.Abstrack
     {
         Task<List<Customer>> GetAllCustomersAsync();
         Task CreateCustomerAsync(Customer customer);
-        Task UpdateCustomerAsync(Customer customer, int id);
     }
 }

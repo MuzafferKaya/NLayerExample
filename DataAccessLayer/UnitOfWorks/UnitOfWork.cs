@@ -10,19 +10,20 @@ namespace DataAccessLayer.UnitOfWorks
         {
             _appDbContext = appDbContext;
         }
-        public async ValueTask DisposeAsync()
+
+        public async Task BeginTransactionAsync()
         {
-            await _appDbContext.DisposeAsync();
+            await _appDbContext.Database.BeginTransactionAsync();
         }
 
-        public int Save()
+        public async Task CommitAsync()
         {
-            return _appDbContext.SaveChanges();
+            await _appDbContext.Database.CommitTransactionAsync();
         }
 
-        public async Task<int> SaveAsync()
+        public async Task RollbackAsync()
         {
-            return await _appDbContext.SaveChangesAsync();
+            await _appDbContext.Database.RollbackTransactionAsync();
         }
 
         IRepository<T> IUnitOfWork.GetRepository<T>()
